@@ -1,0 +1,53 @@
+section h2{
+  font-family: "Metal Mania";
+  text-align: center;
+  padding: 20px;
+  font-size: 30px;
+}
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px 30px;
+}
+.wishList{
+ 
+  margin-top: -24px;
+}  
+.wishList a{
+  float: right;
+}
+
+.card img{
+  width: 298px;
+    margin-left: -12px;
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    /* text-align: center; */
+    font-family: arial;
+    margin-top: 20px;
+  }
+  
+  .price {
+    color: grey;
+    font-size: 22px;
+    margin-top: 20px;
+  }
+  
+  .card button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  .card button:hover {
+    opacity: 0.7;
+  }
