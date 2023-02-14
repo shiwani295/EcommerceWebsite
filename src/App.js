@@ -18,18 +18,18 @@ function App() {
   };
   return (
     <Fragment>
-      {/* <CartProvider> */}
-      {cartIsShow && <Cart onClose={hideCartHandler} />}
-      <Header onShowCart={showCartHandler} />
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="store" element={<Store />} />
-          <Route path="about" element={<About />} />
-          {/* <Route path="cart" element={<Cart />} /> */}
-        </Routes>
-      </Router>
-      {/* </CartProvider> */}
+      <CartProvider>
+        {cartIsShow && <Cart onClose={hideCartHandler} />}
+        <Header onShowCart={showCartHandler} />
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="store" element={<Store />} />
+            <Route path="about" element={<About />} />
+            {/* <Route path="cart" element={<Cart />} /> */}
+          </Routes>
+        </Router>
+      </CartProvider>
       <Footer />
     </Fragment>
   );
