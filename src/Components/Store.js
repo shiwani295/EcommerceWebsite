@@ -29,7 +29,7 @@ const Store = () => {
     },
   ];
 
-  const tableRows = productsArr.map((item) => {
+  const storeData = productsArr.map((item) => {
     return (
       <>
         <div className="card">
@@ -52,11 +52,10 @@ const Store = () => {
       </>
     );
   });
-  console.log(tableRows);
   return (
     <section id="music" className="container">
       <h2>MUSIC</h2>
-      <div className="row">{tableRows}</div>
+      <div className="row">{storeData}</div>
     </section>
   );
 };
