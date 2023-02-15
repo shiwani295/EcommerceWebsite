@@ -2,13 +2,13 @@ import React, { useContext } from "react";
 import CartContext from "../StoreContext/CartContext";
 
 const CartButton = (props) => {
-  const cartctx = useContext(CartContext);
-  console.log(cartctx);
+  const cartCtx = useContext(CartContext);
 
-  const numberOfCartItem = cartctx.items.reduce((curNumber, item) => {
-    return curNumber + item.amount;
+  const numberOfCartItem = cartCtx.items.reduce((currentValue, item) => {
+    return currentValue + item.quantity;
   }, 0);
 
+  //console.log(numberOfCartItem);
   return (
     <div className="col-md-5 my-auto">
       <ul className="navbar-nav justify-content-end">

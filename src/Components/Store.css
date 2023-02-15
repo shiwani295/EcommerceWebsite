@@ -44,7 +44,9 @@ section h2{
     background-color: #000;
     text-align: center;
     cursor: pointer;
-    width: 100%;
+    width: 298px;
+    margin-left: -20px;
+    margin-bottom: -4px;
     font-size: 18px;
   }
   

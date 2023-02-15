@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
+import CartContext from "../StoreContext/CartContext";
+import StoreItemForm from "./StoreItemForm";
 
 const StoreItems = (props) => {
+  console.log(props.title);
+  const cartCtx = useContext(CartContext);
   const price = `$${props.price.toFixed(2)}`;
+  const AddToCartHandler = (quantity) => {
+    cartCtx.addItem({
+      id: props.id,
+      title: props.title,
+      quantity: quantity,
+      image: props.image,
+    });
+  };
   return (
     <>
       <div className="card">
@@ -16,19 +28,8 @@ const StoreItems = (props) => {
           </a>
         </span>
         <span className="quantity">
-          <input
-            type="number"
-            min="1"
-            max="5"
-            step="1"
-            defaultValue="1"
-            //value={props.quantity}
-            className="mb-2"
-          ></input>
+          <StoreItemForm onAddToCart={AddToCartHandler} />
         </span>
-        <p>
-          <button>Add to Cart</button>
-        </p>
       </div>
       <br />
     </>

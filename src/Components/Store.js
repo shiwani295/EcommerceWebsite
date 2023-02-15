@@ -10,6 +10,7 @@ const Store = () => {
       price: 100,
       imageUrl:
         "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
+      quantity: 4,
     },
     {
       id: "2",
@@ -39,6 +40,7 @@ const Store = () => {
 
   const storeData = productsArr.map((item) => (
     <StoreItems
+      id={item.id}
       key={item.id}
       title={item.title}
       price={item.price}
