@@ -1,8 +1,10 @@
 import React from "react";
 
 const CardItem = (props) => {
+  const price = `$${props.price.toFixed(2)}`;
+
   return (
-    <tr>
+    <tr className={{ style: "overflow" }}>
       <td>
         <img src={props.image} className="rounded" style={{ width: "50px" }} />
         <span style={{ marginLeft: "6px", fontWeight: "500" }}>
@@ -10,20 +12,14 @@ const CardItem = (props) => {
         </span>
       </td>
       <td>
-        <p>{props.price}</p>
+        <p>{price}</p>
       </td>
-      <td className="">
-        <input
-          className="form-control-sm border border-light"
-          id="amount_"
-          type="number"
-          max="5"
-          min="1"
-          step="1"
-          defaultValue="1"
-          style={{ width: "40px", marginRight: "15px" }}
-        />
-        <button className="border border-danger rounded bg-danger ">
+      <td className=" quantity">
+        <span style={{ fontWeight: "bold" }}>x{props.quantity}</span>
+        {/*  */}
+      </td>
+      <td>
+        <button className="border border-danger rounded bg-danger text-white">
           Remove
         </button>
       </td>
@@ -32,3 +28,15 @@ const CardItem = (props) => {
 };
 
 export default CardItem;
+{
+  /* <input
+className="form-control-sm border border-light"
+id="amount_"
+type="number"
+max="5"
+min="1"
+step="1"
+defaultValue="1"
+style={{ width: "40px", marginRight: "15px" }}
+/> */
+}

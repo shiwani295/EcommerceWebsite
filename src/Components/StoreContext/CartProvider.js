@@ -9,12 +9,36 @@ const defaultCartState = {
 const cartReducer = (state, action) => {
   if (action.type === "ADD") {
     //console.log(state);
-    const updatedItems = state.items.concat(action.item);
 
     const updatedTotalAmount =
       state.totalAmount + action.item.price * action.item.quantity;
 
-    //console.log(updatedTotalAmount);
+    //** this one for check the item already exist or not in  header Cart
+    //this for if you add one item 4 time so it will show you single item with 4 quantity
+    //********start here */
+    const existingCartItemIndex = state.items.findIndex(
+      (item) => item.id === action.item.id
+    );
+
+    const existingCartItem = state.items[existingCartItemIndex];
+
+    let updateItem;
+    let updatedItems;
+
+    if (existingCartItem) {
+      updateItem = {
+        ...existingCartItem,
+        quantity: existingCartItem.quantity + action.item.quantity,
+      };
+
+      //copy the existing items
+      updatedItems = [...state.items];
+      updatedItems[existingCartItemIndex] = updateItem;
+    } else {
+      updatedItems = state.items.concat(action.item);
+    }
+
+    //***end here */
 
     return {
       items: updatedItems,
