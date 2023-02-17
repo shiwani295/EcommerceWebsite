@@ -52,9 +52,10 @@ const cartReducer = (state, action) => {
     });
 
     const existingCartItem = state.items[existingCartItemIndex];
-    console.log(existingCartItem);
+    //console.log(existingCartItem);
 
-    const updatedTotalAmount = state.totalAmount - existingCartItem.price;
+    const updatedTotalAmount =
+      state.totalAmount - existingCartItem.price * existingCartItem.quantity;
 
     return {
       ...state,
