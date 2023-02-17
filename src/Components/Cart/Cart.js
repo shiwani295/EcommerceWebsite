@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useReducer } from "react";
 import classes from "../Cart/Cart.module.css";
 import CartContext from "../StoreContext/CartContext";
 import CardItem from "./CardItem";
@@ -9,11 +9,14 @@ const Cart = (props) => {
   const totalAmount = `$${cartCtx.totalAmount.toFixed("2")}`;
   const hasItem = cartCtx.items.length > 0;
 
-  const removeCartHandler = (id) => {};
-  const addCartHandler = (item) => {};
+  //that add and remove for inside the cart table
+  const removeCartHandler = (id) => {
+    cartCtx.removeItem(id);
+  };
+  // const addCartHandler = (item) => {};
 
   const CardData = (
-    <tbody className={classes["cart-items"]}>
+    <tbody className={classes["cart-items"]} id="table">
       {cartCtx.items.map((item) => (
         <CardItem
           key={item.id}
@@ -22,7 +25,7 @@ const Cart = (props) => {
           quantity={item.quantity}
           image={item.image}
           onRemove={removeCartHandler.bind(null, item.id)}
-          onAdd={addCartHandler.bind(null, item)}
+          //onAdd={addCartHandler.bind(null, item)}
         />
       ))}
     </tbody>

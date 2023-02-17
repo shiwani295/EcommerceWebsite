@@ -19,7 +19,10 @@ const CardItem = (props) => {
         {/*  */}
       </td>
       <td>
-        <button className="border border-danger rounded bg-danger text-white">
+        <button
+          className="border border-danger rounded bg-danger text-white"
+          onClick={props.onRemove}
+        >
           Remove
         </button>
       </td>

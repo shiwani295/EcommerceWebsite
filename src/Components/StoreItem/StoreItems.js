@@ -3,7 +3,6 @@ import CartContext from "../StoreContext/CartContext";
 import StoreItemForm from "./StoreItemForm";
 
 const StoreItems = (props) => {
-  console.log(props.title);
   const cartCtx = useContext(CartContext);
   const price = `$${props.price.toFixed(2)}`;
   const AddToCartHandler = (quantity) => {
@@ -12,6 +11,7 @@ const StoreItems = (props) => {
       title: props.title,
       quantity: quantity,
       image: props.image,
+      price: props.price,
     });
   };
   return (

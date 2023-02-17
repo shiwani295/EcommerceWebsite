@@ -8,13 +8,13 @@ const defaultCartState = {
 
 const cartReducer = (state, action) => {
   if (action.type === "ADD") {
-    //console.log(state);
-
+    // console.log(action);
     const updatedTotalAmount =
       state.totalAmount + action.item.price * action.item.quantity;
 
     //** this one for check the item already exist or not in  header Cart
     //this for if you add one item 4 time so it will show you single item with 4 quantity
+
     //********start here */
     const existingCartItemIndex = state.items.findIndex(
       (item) => item.id === action.item.id
@@ -45,6 +45,26 @@ const cartReducer = (state, action) => {
       totalAmount: updatedTotalAmount,
     };
   }
+
+  if (action.type === "REMOVE") {
+    const existingCartItemIndex = state.items.findIndex((item) => {
+      return item.id === action.payload;
+    });
+
+    const existingCartItem = state.items[existingCartItemIndex];
+    console.log(existingCartItem);
+
+    const updatedTotalAmount = state.totalAmount - existingCartItem.price;
+
+    return {
+      ...state,
+      items: state.items.filter((curElem) => {
+        return curElem.id !== action.payload;
+      }),
+      totalAmount: updatedTotalAmount,
+    };
+  }
+
   return defaultCartState;
 };
 
@@ -58,7 +78,7 @@ const CartProvider = (props) => {
     // console.log(item);
   };
   const removeItemFromCartHandler = (id) => {
-    dispatchCartAction({ type: "REMOVE", id: id });
+    dispatchCartAction({ type: "REMOVE", payload: id });
   };
 
   const cartContext = {
@@ -75,3 +95,13 @@ const CartProvider = (props) => {
 };
 
 export default CartProvider;
+// const updatedTotalAmount = state.totalAmount - existingCartItem.price;
+// console.log(existingCartItem.quantity);
+//if (existingCartItem.quantity === 1) {
+//////////////////////////////////////////////
+//}
+// } else {
+
+//   updatedItems = [...state.items];
+//   updatedItems[existingCartItemIndex] = updatedItem;
+// }

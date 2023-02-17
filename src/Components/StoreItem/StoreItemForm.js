@@ -24,14 +24,12 @@ const StoreItemForm = (props) => {
     <form className="form-control-sm form " onSubmit={submitHandler}>
       <input
         ref={quantityInputRef}
-        //  id= "amount_" + props.id,
-        id="amount"
+        id="amount _"
         type="number" //the number always a string here
         min="1"
         max="5"
         step="1"
         defaultValue="1"
-        //value={props.quantity}
         className="mb-2"
       />
       <button className="FormButton"> +Add to Cart</button>
