@@ -8,14 +8,38 @@ import About from "./Components/About";
 import Store from "./Components/Store";
 import CartProvider from "./Components/StoreContext/CartProvider";
 import Footer from "./Components/Layout/Footer";
+import ContactUs from "./Components/ContactUs";
 function App() {
   const [cartIsShow, setCartIsShow] = useState(false);
+
   const showCartHandler = () => {
     setCartIsShow(true);
   };
   const hideCartHandler = () => {
     setCartIsShow(false);
   };
+  const contactUsHandler = async (data) => {
+    try {
+      const response = await fetch(
+        "https://ecomcontactform-default-rtdb.firebaseio.com/ContactForm.json",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      const responseData = await response.json();
+      alert("Stored Data Successfully");
+
+      //console.log(responseData);
+    } catch {
+      console.log("error");
+    }
+  };
+
   return (
     <Fragment>
       <CartProvider>
@@ -26,7 +50,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/store" element={<Store />} />
           <Route path="/about" element={<About />} />
-          {/* <Route path="cart" element={<Cart />} /> */}
+          <Route
+            path="/contactus"
+            contactUsHandler
+            element={<ContactUs OnSubmitContactForm={contactUsHandler} />}
+          />
         </Routes>
       </CartProvider>
       <Footer />

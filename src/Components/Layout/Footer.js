@@ -2,7 +2,10 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="bg-dark text-white" style={{ height: "150px" }}>
+    <div
+      className=" text-white footer"
+      style={{ height: "355px", backgroundColor: "#72AB97" }}
+    >
       <h3 className="m-3 p-3">Footer</h3>
       <p></p>
     </div>
@@ -10,3 +13,4 @@ const Footer = () => {
 };
 
 export default Footer;
+//height and all changes - 3-23
