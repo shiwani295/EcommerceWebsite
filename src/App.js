@@ -9,6 +9,7 @@ import Store from "./Components/Store";
 import CartProvider from "./Components/StoreContext/CartProvider";
 import Footer from "./Components/Layout/Footer";
 import ContactUs from "./Components/ContactUs";
+import ProductDetails from "./Components/Pages/ProductDetails";
 function App() {
   const [cartIsShow, setCartIsShow] = useState(false);
 
@@ -55,6 +56,7 @@ function App() {
             contactUsHandler
             element={<ContactUs OnSubmitContactForm={contactUsHandler} />}
           />
+          <Route path="/productDetails/:id" element={<ProductDetails />} />
         </Routes>
       </CartProvider>
       <Footer />

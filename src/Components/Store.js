@@ -11,6 +11,20 @@ const Store = () => {
       imageUrl:
         "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
       quantity: 4,
+      productReview: [
+        {
+          username: "ramu",
+          ratings: 4,
+          reviewstatement: "bad product",
+          profileImg: "",
+        },
+        {
+          username: "Prakash",
+          ratings: 2.5,
+          reviewstatement: "Good one",
+          profileImg: "",
+        },
+      ],
     },
     {
       id: "2",
@@ -19,6 +33,14 @@ const Store = () => {
       imageUrl:
         "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
       quantity: 2,
+      productReview: [
+        {
+          username: "ramu",
+          ratings: 4,
+          reviewstatement: "bad product",
+          profileImg: "",
+        },
+      ],
     },
     {
       id: "3",
@@ -27,6 +49,14 @@ const Store = () => {
       imageUrl:
         "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
       quantity: 3,
+      productReview: [
+        {
+          username: "ramu",
+          ratings: 4,
+          reviewstatement: "bad product",
+          profileImg: "",
+        },
+      ],
     },
     {
       id: "4",
@@ -35,23 +65,24 @@ const Store = () => {
       imageUrl:
         "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
       quantity: 1,
+      productReview: [
+        {
+          username: "ramu",
+          ratings: 4,
+          reviewstatement: "bad product",
+          profileImg: "",
+        },
+      ],
     },
   ];
 
-  const storeData = productsArr.map((item) => (
-    <StoreItems
-      id={item.id}
-      key={item.id}
-      title={item.title}
-      price={item.price}
-      image={item.imageUrl}
-      quantity={item.quantity}
-    />
-  ));
+  const storeData = productsArr.map((item) => {
+    return <StoreItems id={item.id} key={item.id} item={item} />;
+  });
+
   return (
     <section id="music" className="container">
       <h2>MUSIC</h2>
-
       <div className="row">{storeData}</div>
     </section>
   );
