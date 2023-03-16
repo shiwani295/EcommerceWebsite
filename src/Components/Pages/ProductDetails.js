@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { RatingStar } from "rating-star";
 import "../Pages/ProductDetails.css";
@@ -48,7 +48,17 @@ const ProductDetails = () => {
                     <div className="d-flex justify-content-between align-items-center">
                       <div className="d-flex align-items-center">
                         <i className="fa fa-long-arrow-left"></i>
-                        <span className="ml-1">Back</span>
+
+                        <Link
+                          to="/store"
+                          style={{
+                            textDecoration: "none",
+                            color: "#6c757d",
+                            marginLeft: "4px  ",
+                          }}
+                        >
+                          <span className="ml-1">Back</span>
+                        </Link>
                       </div>
                       <i className="fa fa-shopping-cart text-muted"></i>
                     </div>
