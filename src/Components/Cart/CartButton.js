@@ -13,6 +13,11 @@ const CartButton = (props) => {
     <div className="col-md-5 my-auto">
       <ul className="navbar-nav justify-content-end">
         <li className="nav-item">
+          <NavLink className="nav-link " to="/login">
+            Login
+          </NavLink>
+        </li>
+        <li className="nav-item">
           <NavLink className="nav-link " to="/contactus">
             Contact Us
           </NavLink>
