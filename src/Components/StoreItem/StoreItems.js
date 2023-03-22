@@ -24,6 +24,7 @@ const StoreItems = (props) => {
     <>
       <div className="card card_storeItem" key={props.id}>
         <Link
+          style={{ textDecoration: "none", color: "black" }}
           to={`/productDetails/${props.id}`}
           state={{
             title: props.title,
@@ -32,16 +33,22 @@ const StoreItems = (props) => {
             productReview: props.productReview,
           }}
         >
-          {/* <Link to={`/productDetails/${props.id}`} state={{ title: props.title }}> */}
-          <span className="text-center h5 font-weight-bold mt-1">
-            {props.title}
-          </span>
-
-          <img className="card-img-top" src={props.image} alt="Cardimagecap" />
-          <span className="price">{price}</span>
+          <div>
+            <img
+              className="card-img-top"
+              src={props.image}
+              alt="Cardimagecap"
+            />
+          </div>
+          <div className="text-center pt-3 pb-3">
+            <span className=" h5 ">{props.title}</span>
+          </div>
+          <div>
+            <span className="price">{price}</span>
+          </div>
         </Link>
         <span className="wishList">
-          <Link>
+          <Link style={{ textDecoration: "none", color: "black" }}>
             <i className="fa fa-heart"></i>
           </Link>
         </span>
