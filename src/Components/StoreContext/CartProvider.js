@@ -7,10 +7,12 @@ const defaultCartState = {
 };
 
 const cartReducer = (state, action) => {
+  //console.log(action); //its will tell the action ADD and REMOVE
+  //console.log(state); //initial there is no items and total amount
   if (action.type === "ADD") {
-    // console.log(action);
     const updatedTotalAmount =
       state.totalAmount + action.item.price * action.item.quantity;
+    //console.log(updatedTotalAmount); amount you recivce when you add to card  and add all the amount according to quantity
 
     //** this one for check the item already exist or not in  header Cart
     //this for if you add one item 4 time so it will show you single item with 4 quantity
@@ -21,6 +23,7 @@ const cartReducer = (state, action) => {
     );
 
     const existingCartItem = state.items[existingCartItemIndex];
+    //console.log(existingCartItem); //it will take all times of existingitem index like 1 (id)
 
     let updateItem;
     let updatedItems;
@@ -34,6 +37,7 @@ const cartReducer = (state, action) => {
       //copy the existing items
       updatedItems = [...state.items];
       updatedItems[existingCartItemIndex] = updateItem;
+      //console.log(updateItem);
     } else {
       updatedItems = state.items.concat(action.item);
     }
@@ -46,8 +50,9 @@ const cartReducer = (state, action) => {
     };
   }
 
+  let existingCartItemIndex;
   if (action.type === "REMOVE") {
-    const existingCartItemIndex = state.items.findIndex((item) => {
+    existingCartItemIndex = state.items.findIndex((item) => {
       return item.id === action.payload;
     });
 
@@ -68,7 +73,7 @@ const cartReducer = (state, action) => {
 
   return defaultCartState;
 };
-
+//#1st step
 const CartProvider = (props) => {
   const [cartState, dispatchCartAction] = useReducer(
     cartReducer,
@@ -76,7 +81,7 @@ const CartProvider = (props) => {
   );
   const addItemFromCartHandler = (item) => {
     dispatchCartAction({ type: "ADD", item: item });
-    // console.log(item);
+    // console.log(item); //recise all the items with quantity its depend how much quantity you added 2,3 this 2 this will recive here
   };
   const removeItemFromCartHandler = (id) => {
     dispatchCartAction({ type: "REMOVE", payload: id });
@@ -96,13 +101,3 @@ const CartProvider = (props) => {
 };
 
 export default CartProvider;
-// const updatedTotalAmount = state.totalAmount - existingCartItem.price;
-// console.log(existingCartItem.quantity);
-//if (existingCartItem.quantity === 1) {
-//////////////////////////////////////////////
-//}
-// } else {
-
-//   updatedItems = [...state.items];
-//   updatedItems[existingCartItemIndex] = updatedItem;
-// }

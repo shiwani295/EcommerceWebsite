@@ -6,7 +6,12 @@ const CardItem = (props) => {
   return (
     <tr className={{ style: "overflow" }}>
       <td>
-        <img src={props.image} className="rounded" style={{ width: "50px" }} />
+        <img
+          src={props.image}
+          className="rounded"
+          style={{ width: "50px" }}
+          alt=""
+        />
         <span style={{ marginLeft: "6px", fontWeight: "500" }}>
           {props.title}
         </span>
@@ -16,7 +21,6 @@ const CardItem = (props) => {
       </td>
       <td className=" quantity">
         <span style={{ fontWeight: "bold" }}>x{props.quantity}</span>
-        {/*  */}
       </td>
       <td>
         <button

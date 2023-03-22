@@ -6,10 +6,10 @@ import CartContext from "../StoreContext/CartContext";
 import StoreItemForm from "./StoreItemForm";
 
 const StoreItems = (props) => {
-  // console.log(props.item);
+  //console.log(props);
   const cartCtx = useContext(CartContext);
 
-  const price = `$${props.item.price.toFixed(2)}`;
+  const price = `$${props.price.toFixed(2)}`;
   const AddToCartHandler = (quantity) => {
     cartCtx.addItem({
       id: props.id,
@@ -17,6 +17,7 @@ const StoreItems = (props) => {
       quantity: quantity,
       image: props.image,
       price: props.price,
+      productReview: props.productReview,
     });
   };
   return (
@@ -25,28 +26,30 @@ const StoreItems = (props) => {
         <Link
           to={`/productDetails/${props.id}`}
           state={{
-            item: props.item,
+            title: props.title,
+            image: props.image,
+            price: props.price,
+            productReview: props.productReview,
           }}
         >
+          {/* <Link to={`/productDetails/${props.id}`} state={{ title: props.title }}> */}
           <span className="text-center h5 font-weight-bold mt-1">
-            {props.item.title}
+            {props.title}
           </span>
-          <img
-            className="card-img-top"
-            src={props.item.imageUrl}
-            alt="Card image cap"
-          />
+
+          <img className="card-img-top" src={props.image} alt="Cardimagecap" />
           <span className="price">{price}</span>
-          <span className="wishList">
-            <a>
-              <i className="fa fa-heart"></i>
-            </a>
-          </span>
-          <span className="quantity">
-            <StoreItemForm onAddToCart={AddToCartHandler} />
-          </span>
         </Link>
+        <span className="wishList">
+          <Link>
+            <i className="fa fa-heart"></i>
+          </Link>
+        </span>
+        <span className="quantity">
+          <StoreItemForm onAddToCart={AddToCartHandler} />
+        </span>
       </div>
+
       <br />
     </>
   );

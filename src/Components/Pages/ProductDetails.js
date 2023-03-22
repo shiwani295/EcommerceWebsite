@@ -4,8 +4,9 @@ import { RatingStar } from "rating-star";
 import "../Pages/ProductDetails.css";
 const ProductDetails = () => {
   const { id } = useParams();
+
   const location = useLocation();
-  const { imageUrl, price, title, productReview } = location.state.item;
+  const { title, image, price, productReview } = location.state;
   return (
     <section>
       <div class="container mt-5 mb-5">
@@ -17,7 +18,7 @@ const ProductDetails = () => {
                   <div className="images_zoom p-5 ">
                     <img
                       className="img-responsive mr-5"
-                      src={imageUrl}
+                      src={image}
                       alt={title}
                     />
                   </div>
@@ -25,19 +26,19 @@ const ProductDetails = () => {
                     <br></br>
                     <img
                       className="img-responsive"
-                      src={imageUrl}
+                      src={image}
                       alt={title}
                       style={{ width: "40px", marginRight: "20px" }}
                     />
                     <img
                       className="img-responsive"
-                      src={imageUrl}
+                      src={image}
                       alt={title}
                       style={{ width: "40px", marginRight: "20px" }}
                     />
                     <img
                       className="img-responsive"
-                      src={imageUrl}
+                      src={image}
                       alt={title}
                       style={{ width: "40px", marginRight: "20px" }}
                     />
@@ -54,7 +55,7 @@ const ProductDetails = () => {
                           style={{
                             textDecoration: "none",
                             color: "#6c757d",
-                            marginLeft: "4px  ",
+                            marginLeft: "3px  ",
                           }}
                         >
                           <span className="ml-1">Back</span>
@@ -111,34 +112,10 @@ const ProductDetails = () => {
         </div>
       </div>
     </section>
-    // <div className="product-details" key={id}>
-    //   <div>
-    //     <img src={imageUrl} alt={title} />
-    //   </div>
-    //   <div>
-    //     <div>
-    //       <h4>{title}</h4>
-    //       <h3>{price}</h3>
-    //     </div>
-    //     <div>
-    //       {productReview.map((review) => {
-    //         return (
-    //           <div>
-    //             <div>
-    //               <h6>{review.username}</h6>
-    //               <RatingStar
-    //                 id={Math.random().toString()}
-    //                 rating={review.ratings}
-    //               />
-    //             </div>
-    //             <p>{review.reviewstatement}</p>
-    //           </div>
-    //         );
-    //       })}
-    //     </div>
-    //   </div>
-    // </div>
   );
 };
 
 export default ProductDetails;
+
+// note - here we use Store.js, storeitem.js then you get the data in ProductDetails
+//we get all the data in productDetail.js from storeitem <link tag with id and state

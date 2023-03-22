@@ -1,4 +1,5 @@
 import React from "react";
+import ProductDetails from "./Pages/ProductDetails";
 import "./Store.css";
 import StoreItems from "./StoreItem/StoreItems";
 
@@ -13,7 +14,7 @@ const Store = () => {
       quantity: 4,
       productReview: [
         {
-          username: "ramu",
+          username: "Mohit",
           ratings: 4,
           reviewstatement: "bad product",
           profileImg: "",
@@ -35,7 +36,7 @@ const Store = () => {
       quantity: 2,
       productReview: [
         {
-          username: "ramu",
+          username: "virat",
           ratings: 4,
           reviewstatement: "bad product",
           profileImg: "",
@@ -51,7 +52,7 @@ const Store = () => {
       quantity: 3,
       productReview: [
         {
-          username: "ramu",
+          username: "john",
           ratings: 4,
           reviewstatement: "bad product",
           profileImg: "",
@@ -67,7 +68,7 @@ const Store = () => {
       quantity: 1,
       productReview: [
         {
-          username: "ramu",
+          username: "harry",
           ratings: 4,
           reviewstatement: "bad product",
           profileImg: "",
@@ -77,7 +78,17 @@ const Store = () => {
   ];
 
   const storeData = productsArr.map((item) => {
-    return <StoreItems id={item.id} key={item.id} item={item} />;
+    return (
+      <StoreItems
+        id={item.id}
+        key={item.id}
+        title={item.title}
+        price={item.price}
+        image={item.imageUrl}
+        quantity={item.quantity}
+        productReview={item.productReview}
+      />
+    );
   });
 
   return (

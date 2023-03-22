@@ -34,7 +34,8 @@ function App() {
         }
       );
 
-      const responseData = await response.json();
+      await response.json();
+
       alert("Stored Data Successfully");
 
       //console.log(responseData);
@@ -69,4 +70,4 @@ function App() {
 }
 
 export default App;
-//
+//done
