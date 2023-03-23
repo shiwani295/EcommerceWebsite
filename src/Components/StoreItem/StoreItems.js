@@ -20,6 +20,12 @@ const StoreItems = (props) => {
       productReview: props.productReview,
     });
   };
+
+  //add to fav
+
+  const AddToFavHandler = () => {
+    console.log("fav page");
+  };
   return (
     <>
       <div className="card card_storeItem" key={props.id}>
@@ -40,8 +46,8 @@ const StoreItems = (props) => {
               alt="Cardimagecap"
             />
           </div>
-          <div className="text-center pt-3 pb-3">
-            <span className=" h5 ">{props.title}</span>
+          <div className=" pt-3 pb-3">
+            <span className=" h5  fw-bold">{props.title}</span>
           </div>
           <div>
             <span className="price">{price}</span>
@@ -49,7 +55,12 @@ const StoreItems = (props) => {
         </Link>
         <span className="wishList">
           <Link style={{ textDecoration: "none", color: "black" }}>
-            <i className="fa fa-heart"></i>
+            <i
+              class="fa fa-heart-o"
+              style={{ fontSize: "24px" }}
+              onClick={AddToFavHandler}
+            ></i>
+            {/* <i className="fa fa-heart"></i> */}
           </Link>
         </span>
         <span className="quantity">

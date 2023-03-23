@@ -96,7 +96,7 @@ const LoginAuthForm = () => {
           <span
             className=" form-label text-white mt-2"
             style={{
-              backgroundColor: "green",
+              backgroundColor: "red",
               paddingTop: "4px",
               paddingBottom: "4px",
               marginLeft: "15px",
