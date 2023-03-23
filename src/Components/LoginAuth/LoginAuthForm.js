@@ -1,10 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import AuthContext from "../StoreContext/Auth-context";
 //import "..LoginAuth/LoginAuthForm.css";
 
 const LoginAuthForm = () => {
   const [isLogin, setIslogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setmessage] = useState("");
+  const navigate = useNavigate();
+  const authCxt = useContext(AuthContext);
 
   const InputEmailRef = useRef("");
   const InputPasswordRef = useRef("");
@@ -21,14 +26,15 @@ const LoginAuthForm = () => {
 
     setIsLoading(true);
 
-    let Url;
+    let url;
     if (isLogin) {
-      Url = "";
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA8NBmruAkzigSMs1HAVcEqIAt6pEzCNM8";
     } else {
-      Url =
+      url =
         "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA8NBmruAkzigSMs1HAVcEqIAt6pEzCNM8";
     }
-    fetch(Url, {
+    fetch(url, {
       method: "Post",
       body: JSON.stringify({
         email: Enteredemail,
@@ -38,27 +44,39 @@ const LoginAuthForm = () => {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((res) => {
-      setmessage("Send Sucessfully");
-      setIsLoading(false);
-      setTimeout(() => {
+    })
+      .then((res) => {
+        //
+        setIsLoading(false);
+        setmessage("Send Sucessfully");
+        // setTimeout(() => {
         setmessage("");
-      }, 3000);
+        // }, 3000);
 
-      if (res.status === 200) {
-        return res.json();
-      } else {
-        return res.json().then((data) => {
-          let ErrorMessage;
-          if (data.error) {
-            ErrorMessage = data.error.message;
-            setmessage(ErrorMessage);
-            //alert(ErrorMessage);
-          }
-          console.log(data);
-        });
-      }
-    });
+        if (res.ok) {
+          return res.json();
+        } else {
+          return res.json().then((data) => {
+            let ErrorMessage;
+            if (data.error) {
+              ErrorMessage = data.error.message;
+              setmessage(ErrorMessage);
+              //alert(ErrorMessage);
+            }
+            console.log(data);
+          });
+        }
+      })
+      .then((data) => {
+        //if the user login give to the token
+        authCxt.login(data.idToken);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+        setmessage(error.error.message);
+        setIsLoading(false);
+      });
   };
   return (
     <div className="container mt-5">
@@ -81,8 +99,8 @@ const LoginAuthForm = () => {
               backgroundColor: "green",
               paddingTop: "4px",
               paddingBottom: "4px",
-              marginLeft: "12px",
-              width: "338px",
+              marginLeft: "15px",
+              width: "590px",
               borderRadius: " 5px",
             }}
           >

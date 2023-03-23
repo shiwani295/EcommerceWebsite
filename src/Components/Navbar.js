@@ -11,7 +11,7 @@ function Navbar(props) {
       >
         <div className="container-fluid">
           <NavLink className="navbar-brand" to="/">
-            <h5 className="brand-name">Funda Ecom</h5>
+            <h5 className="brand-name">E'com Shop</h5>
           </NavLink>
           <Buttonhidden />
           <Navbardata onClick={props.onClickCart} />
