@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import React from "react";
 import Header from "./Components/Layout/Header";
 import Cart from "./Components/Cart/Cart";
@@ -11,9 +11,12 @@ import Footer from "./Components/Layout/Footer";
 import ContactUs from "./Components/ContactUs";
 import ProductDetails from "./Components/Pages/ProductDetails";
 import LoginAuthForm from "./Components/LoginAuth/LoginAuthForm";
+import AuthContext from "./Components/StoreContext/Auth-context";
 
 function App() {
   const [cartIsShow, setCartIsShow] = useState(false);
+  const authCxt = useContext(AuthContext);
+  const isLoggedIn = authCxt.isLoggedIn;
 
   const showCartHandler = () => {
     setCartIsShow(true);
@@ -21,6 +24,7 @@ function App() {
   const hideCartHandler = () => {
     setCartIsShow(false);
   };
+
   const contactUsHandler = async (data) => {
     try {
       const response = await fetch(
@@ -33,27 +37,33 @@ function App() {
           body: JSON.stringify(data),
         }
       );
-
       await response.json();
-
       alert("Stored Data Successfully");
-
-      //console.log(responseData);
     } catch {
       console.log("error");
     }
   };
 
+  //this useeffect for logout autometic after 5 mins
+  useEffect(() => {
+    setTimeout(() => {
+      authCxt.logout();
+      // Redirect("/auth");
+    }, 5 * 60 * 1000);
+  }, [authCxt]);
   return (
     <Fragment>
       <CartProvider>
         {cartIsShow && <Cart onClose={hideCartHandler} />}
         <Header onShowCart={showCartHandler} />
-
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<LoginAuthForm />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/store" element={<Store />} />
+
+          <Route
+            path="/store"
+            element={isLoggedIn ? <Store /> : <LoginAuthForm />}
+          />
           <Route path="/about" element={<About />} />
           <Route
             path="/contactus"
@@ -70,4 +80,3 @@ function App() {
 }
 
 export default App;
-//done

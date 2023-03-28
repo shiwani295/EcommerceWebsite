@@ -1,31 +1,27 @@
 import React, { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import AuthContext from "../StoreContext/Auth-context";
 //import "..LoginAuth/LoginAuthForm.css";
-
 const LoginAuthForm = () => {
-  const [isLogin, setIslogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setmessage] = useState("");
   const navigate = useNavigate();
   const authCxt = useContext(AuthContext);
+  console.log(authCxt);
 
   const InputEmailRef = useRef("");
   const InputPasswordRef = useRef("");
 
   const switchAuthModeHandler = () => {
-    setIslogin(!isLogin);
+    setIsLogin((prevState) => !prevState);
   };
 
   const SubmitHandler = (event) => {
     event.preventDefault();
-
     const Enteredemail = InputEmailRef.current.value;
     const Enteredpassword = InputPasswordRef.current.value;
-
     setIsLoading(true);
-
     let url;
     if (isLogin) {
       url =
@@ -46,13 +42,7 @@ const LoginAuthForm = () => {
       },
     })
       .then((res) => {
-        //
         setIsLoading(false);
-        setmessage("Send Sucessfully");
-        // setTimeout(() => {
-        setmessage("");
-        // }, 3000);
-
         if (res.ok) {
           return res.json();
         } else {
@@ -61,20 +51,17 @@ const LoginAuthForm = () => {
             if (data.error) {
               ErrorMessage = data.error.message;
               setmessage(ErrorMessage);
-              //alert(ErrorMessage);
             }
-            console.log(data);
           });
         }
       })
       .then((data) => {
-        //if the user login give to the token
+        localStorage.setItem("token", data.idToken);
         authCxt.login(data.idToken);
         navigate("/");
       })
-      .catch((error) => {
-        console.log(error);
-        setmessage(error.error.message);
+      .catch((err) => {
+        console.log(err);
         setIsLoading(false);
       });
   };
