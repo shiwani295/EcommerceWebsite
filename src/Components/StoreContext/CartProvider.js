@@ -98,7 +98,7 @@ const CartProvider = (props) => {
       headers: { "Content-Type": "application/json" },
     };
     fetch(
-      `https://crudcrud.com/api/9edfcb21da5446f7b7ba534930597039/Cart${plainTextEmail}`,
+      `https://crudcrud.com/api/2dcb9a73017f4cc0a41dfdd3cd8ab7d3/Cart${plainTextEmail}`,
       getData
     )
       .then((response) => response.json())
@@ -107,7 +107,7 @@ const CartProvider = (props) => {
         console.log(duplicateItem);
         if (duplicateItem === -1 || undefined) {
           fetch(
-            `https://crudcrud.com/api/9edfcb21da5446f7b7ba534930597039/Cart${plainTextEmail}`,
+            `https://crudcrud.com/api/2dcb9a73017f4cc0a41dfdd3cd8ab7d3/Cart${plainTextEmail}`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -117,13 +117,14 @@ const CartProvider = (props) => {
             .then((response) => response.json())
             .then((data) => {
               console.log("Add the DATA", data);
+              console.log(item);
               dispatchCartAction({ type: "ADD", item: item });
             });
         } else {
           const totalQuantity = item.quantity + data[duplicateItem].quantity;
           console.log(totalQuantity);
           fetch(
-            `https://crudcrud.com/api/9edfcb21da5446f7b7ba534930597039/Cart${plainTextEmail}/${data[duplicateItem]._id}`,
+            `https://crudcrud.com/api/2dcb9a73017f4cc0a41dfdd3cd8ab7d3/Cart${plainTextEmail}/${data[duplicateItem]._id}`,
             {
               method: "PUT",
               headers: { "Content-Type": "application/json" },
@@ -131,6 +132,7 @@ const CartProvider = (props) => {
                 id: item.id,
                 title: item.title,
                 price: item.price,
+                image: item.image,
                 quantity: totalQuantity,
               }),
             }
@@ -150,7 +152,7 @@ const CartProvider = (props) => {
       headers: { "Content-Type": "application/json" },
     };
     fetch(
-      `https://crudcrud.com/api/9edfcb21da5446f7b7ba534930597039/Cart${plainTextEmail}`,
+      `https://crudcrud.com/api/2dcb9a73017f4cc0a41dfdd3cd8ab7d3/Cart${plainTextEmail}`,
       getData
     )
       .then((response) => response.json())
