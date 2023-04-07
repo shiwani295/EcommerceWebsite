@@ -2,7 +2,7 @@ import { Fragment, useContext, useEffect, useState } from "react";
 import React from "react";
 import Header from "./Components/Layout/Header";
 import Cart from "./Components/Cart/Cart";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "./Components/Home";
 import About from "./Components/About";
 import Store from "./Components/Store";
@@ -57,12 +57,13 @@ function App() {
         {cartIsShow && <Cart onClose={hideCartHandler} />}
         <Header onShowCart={showCartHandler} />
         <Routes>
-          <Route path="/" element={<LoginAuthForm />} />
-          <Route path="/home" element={<Home />} />
-
+          <Route
+            path="/"
+            element={isLoggedIn ? <Home /> : <Navigate to="/login" />}
+          />
           <Route
             path="/store"
-            element={isLoggedIn ? <Store /> : <LoginAuthForm />}
+            element={isLoggedIn ? <Store /> : <Navigate to="/login" />}
           />
           <Route path="/about" element={<About />} />
           <Route
